@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#172441">
+<title>Hải Đông – Hội ngộ bạn cũ</title>
+<style>
+:root{--wine:#8d3029;--cream:#fff5dc;--gold:#e5c16d;--navy:#172441}
+*{box-sizing:border-box}body{margin:0;background:#0e1930;color:#fff;font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif}
+button,input{font:inherit}button{cursor:pointer;border:0;border-radius:11px;font-weight:750}
+#login{min-height:100dvh;display:grid;place-items:center;padding:18px;background:linear-gradient(#101a3155,#101a31bb),url('/school-bg.jpg') center/cover}
+.card{width:min(430px,100%);background:var(--cream);color:#59352d;border:3px solid var(--gold);border-radius:22px;padding:22px;box-shadow:0 18px 55px #0008}
+.eyebrow{font-size:11px;letter-spacing:2px;font-weight:900;color:#9b6b3e}.card h1{margin:5px 0 8px;color:var(--wine);font-size:clamp(23px,5vw,30px)}.card p{color:#775c50;font-size:13px;line-height:1.45}
+label{display:block;font-weight:750;font-size:13px;margin-top:12px}input{width:100%;padding:13px;border:1px solid #d7c6a7;border-radius:10px;background:white;color:#222;margin-top:6px;font-size:16px}
+.primary{width:100%;padding:14px;background:var(--wine);color:white;margin-top:17px}.smallnote{font-size:11px!important}
+#game{display:none;height:100dvh;grid-template-rows:auto 1fr auto;overflow:hidden}.top{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 12px;background:var(--navy);flex-wrap:wrap}.brand{font-weight:900;color:#ffe7b0}.pill{padding:7px 10px;background:var(--wine);border-radius:9px;font-size:12px}.status{font-size:12px;color:#a8efb5}
+.world{position:relative;overflow:hidden;min-height:250px;background:#405a55;touch-action:none}
+.backdrop{position:absolute;inset:0;background-image:linear-gradient(#0d18301c,#0d18304a),url('/school-bg.jpg');background-size:cover;background-position:center}
+.world:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(0deg,#0a173344,transparent 45%)}
+.hud{position:absolute;z-index:4;top:10px;left:10px;display:flex;gap:8px;align-items:flex-start;max-width:calc(100% - 20px)}
+.chatbox{width:min(300px,65vw);background:#101a31e8;border:1px solid #ffffff44;border-radius:13px;overflow:hidden}
+.tabs{background:var(--wine);padding:8px 10px;font-size:11px;font-weight:900}.messages{height:105px;overflow:auto;padding:8px;font-size:12px;line-height:1.4;overflow-wrap:anywhere}.message{margin-bottom:5px}.message b{color:#ffe1a0}
+.sendrow{display:flex;gap:5px;padding:6px}.sendrow input{min-width:0;margin:0;padding:8px;font-size:13px}.sendrow button{background:var(--gold);color:#59352d;padding:8px 10px}
+.map{margin-left:auto;background:#fff1d7;color:#73362e;border-radius:10px;padding:9px;font-size:11px;font-weight:800}
+.player{position:absolute;z-index:3;width:38px;height:68px;transform:translate(-50%,-50%);transition:left .14s linear,top .14s linear;pointer-events:none;filter:drop-shadow(0 3px 3px #0008)}
+.tag{position:absolute;bottom:69px;left:50%;transform:translateX(-50%);white-space:nowrap;background:#8d3029;border:1px solid #f2d48e;color:#fff;padding:4px 7px;border-radius:7px;font-size:10px;font-weight:850}
+.head{width:22px;height:22px;border-radius:45%;background:#e9b995;border:2px solid #49372d;margin:auto;position:relative}.hair{position:absolute;top:-2px;left:0;width:19px;height:8px;background:#38261f;border-radius:50%}.torso{width:28px;height:25px;background:#f4f0e6;border:2px solid #526078;border-radius:5px;margin:-1px auto 0}.legs{display:flex;justify-content:center;gap:5px}.legs i{height:20px;width:8px;background:#263047}
+.me .torso{background:#e6b64e}.toast{position:absolute;z-index:6;top:130px;left:50%;transform:translateX(-50%);background:#fff4dc;color:#75372e;border:2px solid var(--gold);border-radius:10px;padding:9px 12px;font-size:12px;font-weight:800;display:none;white-space:nowrap}
+.footer{background:var(--navy)}.controls{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 10px}.pad{display:grid;grid-template-columns:repeat(3,36px);grid-template-rows:repeat(2,32px);gap:3px}.pad button{background:#fff0d3;color:#71352d;padding:0}.up{grid-column:2}.left{grid-column:1;grid-row:2}.down{grid-column:2;grid-row:2}.right{grid-column:3;grid-row:2}.actions{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end}.actions button{background:#fff0d3;color:#71352d;padding:9px 8px;font-size:11px}.help{text-align:center;padding:5px;color:#b9c5da;font-size:10px}
+@media(max-width:480px){.brand{font-size:12px}.pill{font-size:10px}.chatbox{width:62vw}.messages{height:90px}.map{font-size:10px}.actions button{font-size:10px;padding:8px 6px}.pad{grid-template-columns:repeat(3,31px)}}
+</style>
+</head>
+<body>
+<section id="login"><div class="card"><div class="eyebrow">HỘI NGỘ BẠN CŨ</div><h1>THCS &amp; THPT HẢI ĐÔNG</h1><p>Cổng trường đã mở — cùng trở về gặp thầy cô và bạn bè!</p>
+<label>Họ và tên</label><input id="name" maxlength="28" placeholder="Nhập họ tên của bạn" autocomplete="name">
+<label>Lớp từng học</label><input id="classroom" maxlength="16" placeholder="Ví dụ: 12A1">
+<button class="primary" id="join">VÀO SÂN TRƯỜNG</button><p class="smallnote">Bạn sẽ gặp những người đang online cùng lúc. Vui lòng dùng tên phù hợp và cư xử văn minh.</p></div></section>
+<section id="game"><header class="top"><div class="brand">🏫 THPT HẢI ĐÔNG · HỘI NGỘ BẠN CŨ</div><div class="pill" id="identity">Khách</div><div class="status" id="status">● Đang kết nối</div></header>
+<main class="world" id="world"><div class="backdrop"></div><div class="hud"><div class="chatbox"><div class="tabs">💬 CHAT CHUNG · MỌI NGƯỜI ĐỀU THẤY</div><div class="messages" id="messages"><div class="message">Hệ thống: Chào mừng bạn về thăm trường!</div></div><div class="sendrow"><input id="chatInput" maxlength="180" placeholder="Nhắn với bạn cũ..."><button id="send">Gửi</button></div></div><div class="map">🗺 SÂN TRƯỜNG<br><span id="count">0 người online</span></div></div><div class="toast" id="toast"></div></main>
+<footer class="footer"><div class="controls"><div class="pad"><button class="up" data-dir="up">▲</button><button class="left" data-dir="left">◀</button><button class="down" data-dir="down">▼</button><button class="right" data-dir="right">▶</button></div><div class="actions"><button data-action="wave">👋 Vẫy tay</button><button data-action="jump">🦘 Nhảy</button><button data-action="photo">📷 Chụp ảnh</button></div></div><div class="help">PC: WASD / phím mũi tên · Điện thoại: dùng nút điều khiển · Chat chung hiển thị cho mọi người</div></footer></section>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+(() => {
+ const socket=io();
+ const $=id=>document.getElementById(id);
+ const els={login:$('login'),game:$('game'),world:$('world'),messages:$('messages'),status:$('status'),count:$('count'),toast:$('toast')};
+ let myId=null,joined=false,x=50,y=72,players=new Map(),toastTimer;
+ function toast(text){els.toast.textContent=text;els.toast.style.display='block';clearTimeout(toastTimer);toastTimer=setTimeout(()=>els.toast.style.display='none',2300)}
+ function addMessage(html){const d=document.createElement('div');d.className='message';d.textContent=html;els.messages.appendChild(d);els.messages.scrollTop=els.messages.scrollHeight;while(els.messages.children.length>70)els.messages.removeChild(els.messages.firstChild)}
+ function makePlayer(p){let node=document.createElement('div');node.className='player'+(p.id===myId?' me':'');node.id='p-'+p.id;node.innerHTML='<div class="tag"></div><div class="head"><div class="hair"></div></div><div class="torso"></div><div class="legs"><i></i><i></i></div>';node.querySelector('.tag').textContent=p.name+' · '+p.classroom;els.world.appendChild(node);return node}
+ function draw(p){let node=document.getElementById('p-'+p.id)||makePlayer(p);node.style.left=p.x+'%';node.style.top=p.y+'%';}
+ function updateAll(list){const alive=new Set();list.forEach(p=>{alive.add(p.id);draw(p)});for(const [id] of players){if(!alive.has(id)){document.getElementById('p-'+id)?.remove();players.delete(id)}}list.forEach(p=>players.set(p.id,p));els.count.textContent=list.length+' người online'}
+ socket.on('connect',()=>{els.status.textContent='● Đã kết nối';if(joined)socket.emit('player:join',{name:$('name').value,classroom:$('classroom').value})});
+ socket.on('disconnect',()=>els.status.textContent='○ Mất kết nối, đang thử lại...');
+ socket.on('world:init',list=>{if(joined)updateAll(list)});
+ socket.on('join:error',msg=>{alert(msg);$('join').disabled=false;$('join').textContent='VÀO SÂN TRƯỜNG'});
+ socket.on('join:success',p=>{myId=p.id;x=p.x;y=p.y;joined=true;els.login.style.display='none';els.game.style.display='grid';draw(p);toast('Chào mừng '+p.name+' trở về Hải Đông!')});
+ socket.on('players:update',updateAll);
+ socket.on('player:moved',p=>{let old=players.get(p.id)||{};let next={...old,...p};players.set(p.id,next);draw(next)});
+ socket.on('chat:message',m=>addMessage(m.name+' ('+m.classroom+'): '+m.message));
+ socket.on('system:message',m=>addMessage('🔔 '+m));
+ socket.on('player:action',a=>{const p=players.get(a.id);if(p)toast(p.name+(a.action==='wave'?' vẫy tay chào mọi người!':a.action==='jump'?' đang nhảy vui vẻ!':' đang chụp ảnh kỷ niệm!'))});
+ $('join').addEventListener('click',()=>{const name=$('name').value.trim(),classroom=$('classroom').value.trim();if(!name||!classroom){alert('Bạn nhập họ tên và lớp trước nhé.');return}if(!socket.connected){alert('Chưa kết nối được máy chủ. Hãy thử tải lại trang.');return}$('join').disabled=true;$('join').textContent='ĐANG VÀO TRƯỜNG...';socket.emit('player:join',{name,classroom})});
+ function move(dir){if(!joined)return;let dx=0,dy=0;if(dir==='up')dy=-2.6;if(dir==='down')dy=2.6;if(dir==='left')dx=-2.6;if(dir==='right')dx=2.6;x=Math.max(4,Math.min(96,x+dx));y=Math.max(18,Math.min(94,y+dy));let p={id:myId,x,y};draw({...p,name:$('name').value,classroom:$('classroom').value});socket.volatile.emit('player:move',{x,y,direction:dir})}
+ document.querySelectorAll('[data-dir]').forEach(b=>{b.addEventListener('click',()=>move(b.dataset.dir));b.addEventListener('touchstart',e=>{e.preventDefault();move(b.dataset.dir)},{passive:false})});
+ document.addEventListener('keydown',e=>{if(['INPUT'].includes(document.activeElement.tagName))return;let m={ArrowUp:'up',w:'up',ArrowDown:'down',s:'down',ArrowLeft:'left',a:'left',ArrowRight:'right',d:'right'};if(m[e.key]){e.preventDefault();move(m[e.key])}});
+ function send(){let v=$('chatInput').value.trim();if(v){socket.emit('chat:send',v);$('chatInput').value=''}}$('send').addEventListener('click',send);$('chatInput').addEventListener('keydown',e=>{if(e.key==='Enter')send()});
+ document.querySelectorAll('[data-action]').forEach(b=>b.addEventListener('click',()=>socket.emit('player:action',b.dataset.action)));
+})();
+</script></body></html>
