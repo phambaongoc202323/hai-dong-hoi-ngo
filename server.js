@@ -14,6 +14,13 @@ const players = new Map();
 const MAX_PLAYERS = 100;
 
 app.use(express.static("public"));
+app.get("/", (_req, res) => {
+  res.sendFile(require("path").join(__dirname, "index.html"));
+});
+
+app.get("/school-bg.jpg", (_req, res) => {
+  res.sendFile(require("path").join(__dirname, "school-bg.jpg"));
+});
 app.get("/health", (_req, res) => res.json({ ok: true, players: players.size }));
 
 function clean(value, max) {
