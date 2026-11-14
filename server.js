@@ -17,6 +17,17 @@ const activePrivate = new Set();
 const pairKey = (a, b) => [a, b].sort().join(":");
 
 app.use(express.static("public"));
+const path = require("path");
+
+app.use(express.static("public"));
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "index.html"));
+});
+
+app.get("/school-bg.jpg", (req, res) => {
+  res.sendFile(path.join(__dirname, "school-bg.jpg"));
+});
 app.get("/health", (_req, res) => res.json({ ok: true, players: players.size }));
 
 function clean(value, max) {
